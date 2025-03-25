@@ -16,7 +16,8 @@
 .lcp-container a {
   font-family: "Montserrat" !important;
 }
-.lcp-container .prepay h4 {
+.lcp-container .prepay h4,
+.lcp-container .monthly h4 {
   color: #222;
   font-size: 20px;
   font-weight: 700;
@@ -24,3 +25,22 @@
 .lcp-container .prepay .lcp-discount {
   color: #20a18a;
 }
+.lcp-container .btn-leo {
+  padding: 20px 40px;
+  background-color: #20a18a;
+  color: white;
+  font-size: 18px;
+  border-radius: 8px;
+  border-color: transparent;
+}
+.lcp-container .btn-leo:hover {
+  background-color: #28ccae;
+}
+.form-switch.form-switch-toggle > .form-check-input {
+  background-color: #e1e1e1;
+  font-size: 50px;
+}
+.lcp-container .lcp-left-toggler{
+    gap: 50px;
+}
+

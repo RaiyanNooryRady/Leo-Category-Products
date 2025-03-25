@@ -36,7 +36,7 @@ function lcp_display_category_products()
     <div class="lcp-container container">
         <div class="lcp-header">
             <div class="row">
-                <div class="col col-12 col-md-6 d-flex flex-row justify-content-center align-items-center">
+                <div class="lcp-left-toggler col col-12 col-md-6 d-flex flex-row justify-content-md-end align-items-center">
                     <div class="prepay">
                         <h4>Prepay</h4>
                         <p>3 months</p>
@@ -50,8 +50,8 @@ function lcp_display_category_products()
                         <p>3 month min</p>
                     </div>
                 </div>
-                <div class="col col-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-                    <button>Save 10% with 3 month prepay</button>
+                <div class="lcp-right-btn col col-12 col-md-6 d-flex flex-row justify-content-md-start align-items-center">
+                    <button class="btn-leo">Save 10% with 3 month prepay</button>
                 </div>
             </div>
         </div>
