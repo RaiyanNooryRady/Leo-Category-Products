@@ -1,0 +1,47 @@
+<div class="row justify-content-center align-items-center pt-4" ng-show="pricing.term.max_discount_percent != pricing.monthly.max_discount_percent">
+
+    <div class="col-auto px-5">
+
+        <div class="row justify-content-center align-items-center">
+
+            <div class="col-auto text-center">
+
+                <h5 class="lh-1 fw-bolder sm-larger">Prepay</h5>
+                <p class="fs-5 m-0">3 months</p>
+                <p class="fs-5 m-0 color-green">
+                    <span>10% off</span>
+                </p>
+
+            </div>
+
+            <div class="col-auto text-center px-0">
+
+                <h1 class="form-switch form-switch-toggle mt-n5 mb-0 me-0">
+                    <input id="pricingType" class="form-check-input ng-valid ng-dirty ng-valid-parse ng-touched ng-empty" type="checkbox" role="switch" ng-model="pricing.type" ng-true-value="'monthly'" ng-false-value="'term'">
+                </h1>
+
+            </div>
+
+            <div class="col-auto text-center">
+
+                <h5 class="lh-1 fw-bolder sm-larger">Monthly</h5>
+                <p class="fs-5 m-0">3 month min</p>
+                <p class="fs-5 m-0 color-green">
+                    <span ng-show="pricing.monthly.max_discount_percent > 0" class="ng-hide">0% off</span>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-auto pb-4 px-5 order-first order-lg-last mb-4 mb-lg-0" ng-show="pricing.term.max_discount_percent > pricing.monthly.max_discount_percent">
+
+        <a href="#pricing" class="btn btn-orange py-4 px-3 px-lg-5 fs-5 rounded-pill" data-bs-toggle="modal" data-bs-target="#modalGetStarted">
+            <strong>SAVE <span ng-show="pricing.monthly.max_discount_percent > 0" class="ng-hide">additional</span> 10% with 3 month prepay</strong>
+        </a>
+
+    </div>
+
+</div>

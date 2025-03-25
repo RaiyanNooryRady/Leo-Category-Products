@@ -1,1 +1,26 @@
-/**/
+/*
+* Custom CSS
+*/
+.lcp-container h1,
+.lcp-container h2,
+.lcp-container h3,
+.lcp-container h4,
+.lcp-container h5,
+.lcp-container p,
+.lcp-container div,
+.lcp-container span,
+.lcp-container h6,
+.lcp-container small,
+.lcp-container strong,
+.lcp-container button,
+.lcp-container a {
+  font-family: "Montserrat" !important;
+}
+.lcp-container .prepay h4 {
+  color: #222;
+  font-size: 20px;
+  font-weight: 700;
+}
+.lcp-container .prepay .lcp-discount {
+  color: #20a18a;
+}
