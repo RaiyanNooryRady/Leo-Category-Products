@@ -107,7 +107,7 @@ function lcp_display_category_products()
                         <p class="lcp-discount">10% off</p>
                     </div>
                     <h1 class="form-switch form-switch-toggle">
-                        <input id="pricingType" class="form-check-input" type="checkbox" role="switch">
+                        <input id="lcpPricingType" class="form-check-input" type="checkbox" role="switch">
                     </h1>
                     <div class="monthly">
                         <h4>Monthly</h4>
@@ -128,8 +128,8 @@ function lcp_display_category_products()
                         <div class="lcp-product-box card h-100 py-4 px-2 rounded-4">
                             <div class="card-title align-items-center justify-content-center">
                                 <div class="lcp-price d-flex flex-col justify-content-center">
-                                    <div class="lcp-base-price fw-bold fs-4 text-strikethrough"><?php echo $lcp_product['regular_price']; ?></div>
-                                    <div class="lcp-sale-price fw-bold fs-4"><?php echo $lcp_product['sale_price']; ?></div>
+                                    <div id="lcp_regular_price" class="lcp-base-price fw-bold fs-4 text-strikethrough"><?php echo $lcp_product['regular_price']; ?></div>
+                                    <div id="lcp_sale_price" class="lcp-sale-price fw-bold fs-4"><?php echo $lcp_product['sale_price']; ?></div>
                                 </div>
                                 <p class="lcp-per-item text-center fw-bold">Per Item Monthly</p>
                                 <div class="lcp-featured-image text-center">

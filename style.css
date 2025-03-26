@@ -61,6 +61,9 @@
     padding: 10px 20px;
   }
 }
+.lcp-container .lcp-product-box{
+  min-height: 550px;
+}
 .lcp-container .lcp-price{
   gap: 15px;
 }
