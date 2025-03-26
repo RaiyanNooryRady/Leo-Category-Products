@@ -1,6 +1,9 @@
 /*
 * Custom CSS
 */
+/* .lcp-container{
+  width: 100%;
+} */
 .lcp-container h1,
 .lcp-container h2,
 .lcp-container h3,
@@ -45,7 +48,7 @@
 .lcp-container .form-switch.form-switch-toggle > .form-check-input {
   background-color: #e1e1e1;
   font-size: 50px;
-  background-image: url(green-circle.svg);
+  background-image: url(assets/images/green-circle.svg);
 }
 .lcp-container .form-switch.form-switch-toggle > .form-check-input:hover, .lcp-container .form-switch.form-switch-toggle > .form-check-input:focus{
   border: 1px solid #20a18a;
@@ -58,4 +61,33 @@
     padding: 10px 20px;
   }
 }
-
+.lcp-container .lcp-price{
+  gap: 15px;
+}
+.lcp-container .lcp-sale-price{
+  color: #20a18a;
+}
+.lcp-container .lcp-featured-image img{
+  height: 60px;
+  object-fit: contain;
+  object-position: center center;
+}
+.lcp-container .lcp-product-description{
+  line-height: 38px;
+  font-weight: 500;
+}
+.lcp-container .text-strikethrough:before {
+  border-color: currentcolor #ef4f24 #ef4f24;
+  border-top: 3px solid #ef4f24;
+  content: "";
+  left: -5%;
+  opacity: .7;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: rotate(-22deg);
+  z-index: 2;
+}
+.lcp-container .text-strikethrough{
+  position: relative;
+}
