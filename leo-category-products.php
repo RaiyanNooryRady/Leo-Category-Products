@@ -44,11 +44,7 @@ function lcp_get_products_from_subcategory() {
 
     // The last part is the subcategory slug (e.g., 'american-university')
     $subcategory_slug = end($url_parts);
-
-    // Debugging: Check the extracted subcategory slug
-    echo 'Subcategory slug: ' . $subcategory_slug . '<br>';
     
-
     // Get the term object by slug
     $term = get_term_by('slug', $subcategory_slug, 'product_cat');
 
