@@ -47,6 +47,9 @@
   font-size: 50px;
   background-image: url(green-circle.svg);
 }
+.lcp-container .form-switch.form-switch-toggle > .form-check-input:hover, .lcp-container .form-switch.form-switch-toggle > .form-check-input:focus{
+  border: 1px solid #20a18a;
+}
 .lcp-container .lcp-left-toggler{
     gap: 50px;
 }
