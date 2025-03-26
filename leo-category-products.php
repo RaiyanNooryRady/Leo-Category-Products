@@ -30,10 +30,77 @@ function lcp_assets_loader()
     wp_enqueue_script('lcp-script', plugin_dir_url(__FILE__) . 'script.js', array('jquery'), null, true);
 }
 add_action('wp_enqueue_scripts', 'lcp_assets_loader');
+
+function lcp_get_products_from_subcategory() {
+    // Get the current URL path
+    $current_url = $_SERVER['REQUEST_URI'];
+
+    // Remove the base 'product-category' from the URL to get the subcategory part
+    $base = 'product-category/';
+    $url_without_base = str_replace('/' . $base, '', $current_url);
+
+    // Split the URL by slashes to get the subcategory (last part)
+    $url_parts = explode('/', trim($url_without_base, '/'));
+
+    // The last part is the subcategory slug (e.g., 'american-university')
+    $subcategory_slug = end($url_parts);
+
+    // Debugging: Check the extracted subcategory slug
+    echo 'Subcategory slug: ' . $subcategory_slug . '<br>';
+    
+
+    // Get the term object by slug
+    $term = get_term_by('slug', $subcategory_slug, 'product_cat');
+
+    // Debugging: Check if term is returned
+    if ($term) {
+        // Query products by the term's term_id
+        $args = array(
+            'post_type' => 'product',  // Your custom post type for products
+            'posts_per_page' => -1,    // Get all products
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'product_cat',  // Your taxonomy for product categories
+                    'field'    => 'term_id',
+                    'terms'    => $term->term_id, // Use the term ID
+                    'operator' => 'IN',
+                ),
+            ),
+        );
+
+         // Execute the query
+         $query = new WP_Query($args);
+
+         // Return the query result
+         if ($query->have_posts()) {
+             $products_data = array(); // Array to store product details
+ 
+             while ($query->have_posts()) {
+                 $query->the_post();
+ 
+                 // Collect product data
+                 $products_data[] = array(
+                     'title'           => get_the_title(), // Product title
+                     'regular_price'   => get_post_meta(get_the_ID(), '_regular_price', true), // Regular price
+                     'sale_price'      => get_post_meta(get_the_ID(), '_sale_price', true), // Sale price
+                     'featured_image'  => get_the_post_thumbnail_url(get_the_ID(), 'full'), // Featured image
+                     'short_description' => get_the_excerpt(), // Short description
+                 );
+             }
+ 
+             return $products_data; // Return the array of product data
+         } else {
+             return null; // No products found
+         }
+     } else {
+         return null; // Term not found
+     }
+}
+
 function lcp_display_category_products()
 {
+    $lcp_products=lcp_get_products_from_subcategory();
     ?>
-
     <div class="lcp-container mx-auto container-md">
         <div class="lcp-header">
             <div class="row d-flex flex-row justify-content-center align-items-center mx-auto">
@@ -58,47 +125,24 @@ function lcp_display_category_products()
         </div>
         <div class="lcp-main">
             <div class="row">
-                <?php for($i=1;$i<=5;$i++){ ?>
+                <?php foreach($lcp_products as $lcp_product){ ?>
                 <div class="col-10 col-sm-5 col-lg-3 col-xl-2">
                     <div class="lcp-product">
-                        <h4 class="lcp-product-title fw-bold text-center">SMALL</h4>
+                        <h4 class="lcp-product-title fw-bold text-center"><?php echo $lcp_product['title']; ?></h4>
                         <div class="lcp-product-box card h-100 py-4 px-2 rounded-4">
                             <div class="card-title align-items-center justify-content-center">
                                 <div class="lcp-price d-flex flex-col justify-content-center">
-                                    <div class="lcp-base-price fw-bold fs-4 text-strikethrough">$19.50</div>
-                                    <div class="lcp-sale-price fw-bold fs-4">$17.55</div>
+                                    <div class="lcp-base-price fw-bold fs-4 text-strikethrough"><?php echo $lcp_product['regular_price']; ?></div>
+                                    <div class="lcp-sale-price fw-bold fs-4"><?php echo $lcp_product['sale_price']; ?></div>
                                 </div>
                                 <p class="lcp-per-item text-center fw-bold">Per Item Monthly</p>
                                 <div class="lcp-featured-image text-center">
-                                    <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/images/icon-lamp.webp'; ?>"
+                                    <img src="<?php echo esc_url($lcp_product['featured_image']); ?>"
                                         alt="">
                                 </div>
                             </div>
                             <div class="lcp-product-description card-body px-3 py-0 text-center fs-5">
-                                Folding Chair
-                                Vacuum
-                                Lamp
-                                Ironing Board
-                                Mini Safe
-                                Picture Frame
-                                Umbrella
-                                Desk Lamp
-                                Poster Tube
-                                Art Portfolio
-                                Fan
-                                Trash Can
-                                Laundry Basket (empty)
-                                Shoe Rack
-                                Basket
-                                Pillow
-                                Cooler
-                                Skateboard
-                                Broom
-                                Drying rack
-                                Whiteboard
-                                Step Stool
-                                Folding Stool
-                                Mini Vacuum
+                                <?php echo $lcp_product['short_description']; ?>
                             </div>
                         </div>
                     </div>
